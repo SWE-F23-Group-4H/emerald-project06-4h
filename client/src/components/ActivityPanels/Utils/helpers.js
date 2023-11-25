@@ -10,6 +10,46 @@ import {
 import { message } from 'antd';
 //import {}
 
+function new_lines(first_input,second_input) //first_input must be longer than second_input
+      {
+        let index_of_new = 0;
+        let index_of_new_end = 0;
+        let longest_length = 0;
+        let first_is_longer = 0;
+        let second_index = 0;
+        if (first_input.length > second_input.length)
+        {
+          first_is_longer = 1;
+          longest_length = first_input.length;
+        }
+        else
+        {
+          longest_length = second_input.length;
+          first_is_longer = 0;
+        }
+        for (let i = 0 ; i<longest_length-1; i++) //determines where differences in the string start and end.
+        {
+            if(first_is_longer = 1)
+            {
+              //console.log("got here"); //for debugging
+              if(first_input[i] == second_input[second_index])
+              {
+                second_index++;
+              }
+              else if (i == second_index)
+              {
+                index_of_new = i;
+              }
+              else
+              {
+                index_of_new_end = i;
+              }
+              }
+            }
+          let holder_array = [index_of_new,index_of_new_end];
+          return holder_array;
+        }
+
 const AvrboyArduino = window.AvrgirlArduino;
 
 export const setLocalSandbox = (workspaceRef) => {
@@ -42,13 +82,52 @@ export const getJS = (workspaceRef) => {
 // Generates Arduino code from blockly canvas
 export const getArduino = (workspaceRef, shouldAlert = true) => {
   window.Blockly.Arduino.INFINITE_LOOP_TRAP = null;
+
+
+
+  let previous_code = "";
+  if (JSON.parse(localStorage.getItem('previous_code') != null))
+    {
+      console.log("old code is grabbed");
+      previous_code = JSON.parse(localStorage.getItem('previous_code'));
+    }
+  else 
+    {
+    previous_code = window.Blockly.Arduino.workspaceToCode(workspaceRef);
+    }
+  
   let code = window.Blockly.Arduino.workspaceToCode(workspaceRef);
-  code = "void customcode(){}\n" + code.replace("void setup() {","void setup() {\n  customcode();");
-  let custom_code = "pinMode(12, OUTPUT); digitalWrite(12, HIGH);delay(1000);digitalWrite(12, LOW);delay(1000);"
+
+
+
+  code = "void customcode(){}\n" + code.replace("void setup() {","void setup() {\n  customcode();"); //directly modifies and implants
+  //a call to custom function inside the arduino string of code
+  //let custom_code = "pinMode(13, OUTPUT); while(1){digitalWrite(13, HIGH);delay(1000);digitalWrite(13, LOW);delay(1000);};"
+  let custom_code = "pinMode(1,OUTPUT);Serial.begin(9600);while(1){Serial.write(\"h\");delay(1000);}" //code that is inserted in definition of custom code
   code = code.replace("{}","{\n" + custom_code + "\n}")
   if (shouldAlert) alert(code);
-  console.log(code);
-  console.log(typeof(code));
+
+
+
+  if (previous_code == code)
+  {
+    //console.log("what is grabbed: ");
+    //console.log(previous_code);
+    console.log("same code");
+  }
+  else
+  {
+    console.log("append here");
+  }
+
+
+  //console.log("what is saved:");
+  //console.log(code);
+  console.log(new_lines(code,previous_code));
+  let start = new_lines(code,previous_code)[0];
+  let end = new_lines(code,previous_code)[1];
+  console.log(code.substring(start,end));
+  localStorage.setItem('previous_code', JSON.stringify(code));
   return code;
 };
 

@@ -9,6 +9,7 @@ function Search({filterUpdate}) {
     // TODO: Update the value of the filter with the input from the textbox
     // Hint: You will need to use the "current" property of the input variable //----------------------------------------------maybe done to here?  
     filterUpdate(input.current.value);
+    console.log(input.current.value)
     window.text_input = input.current.value;
   }
 
