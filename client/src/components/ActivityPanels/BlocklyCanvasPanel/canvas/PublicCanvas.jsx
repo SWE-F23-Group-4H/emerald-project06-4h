@@ -13,10 +13,12 @@ import {
 } from '../../Utils/consoleHelpers';
 import ArduinoLogo from '../Icons/ArduinoLogo';
 import PlotterLogo from '../Icons/PlotterLogo';
+import {Search} from './Search';
+import CodePopup from "./PopUp";
+import {processCodeInHelper} from "../../Utils/helpers";
+//import {window} from './Exporter';
 
 let plotId = 1;
-
-console.log("The public content was accessed!");
 
 export default function PublicCanvas({ activity, isSandbox }) {
   const [hoverUndo, setHoverUndo] = useState(false);
@@ -29,6 +31,22 @@ export default function PublicCanvas({ activity, isSandbox }) {
   const [connectionOpen, setConnectionOpen] = useState(false);
   const [selectedCompile, setSelectedCompile] = useState(false);
   const [compileError, setCompileError] = useState('');
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const openPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  const [code,codeChange] = useState(''); //Really want access to filter text. may have to make an external prop just to export it
+
+  function codeUpdate(value) {
+    processCodeInHelper(value);
+    codeChange(value);
+  }
 
   const [forceUpdate] = useReducer((x) => x + 1, 0);
   const workspaceRef = useRef(null);
@@ -162,6 +180,9 @@ export default function PublicCanvas({ activity, isSandbox }) {
 
   return (
     <div id='horizontal-container' className='flex flex-column'>
+      <Col>
+
+      </Col>
       <div className='flex flex-row'>
         <div
           id='bottom-container'
@@ -175,6 +196,7 @@ export default function PublicCanvas({ activity, isSandbox }) {
           >
              
             <Row id='icon-control-panel'>
+
               <Col flex='none' id='section-header'>
                 Program your Arduino...
               </Col>
@@ -193,6 +215,7 @@ export default function PublicCanvas({ activity, isSandbox }) {
 
                   <Col flex={'200px'}>
                     <Row>
+
                       <Col className='flex flex-row'>
                         <button
                           onClick={handleUndo}
@@ -240,7 +263,9 @@ export default function PublicCanvas({ activity, isSandbox }) {
                         </button>
                       </Col>
                     </Row>
+
                   </Col>
+
                   <Col flex={'230px'}>
                     <div
                       id='action-btn-container'
@@ -288,6 +313,7 @@ export default function PublicCanvas({ activity, isSandbox }) {
           connectionOpen={connectionOpen}
           setConnectionOpen={setConnectionOpen}
         ></ConsoleModal>
+
         <PlotterModal
           show={showPlotter}
           connectionOpen={connectionOpen}
@@ -324,6 +350,11 @@ export default function PublicCanvas({ activity, isSandbox }) {
             ))
         }
       </xml>
+      <div>
+        <button className="buttonPop" onClick={openPopup}>Inject Code</button>
+      </div>
+      {/*Code for the pop-up window to type code into*/}
+      <CodePopup isOpen={isPopupOpen} onClose={closePopup} onSubmit={codeUpdate}/>
 
 
       {compileError && (
@@ -334,7 +365,7 @@ export default function PublicCanvas({ activity, isSandbox }) {
           onClose={(e) => setCompileError('')}
         ></Alert>
       )}
-      
     </div>
+
   );
 }
