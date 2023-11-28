@@ -18,6 +18,27 @@ export default function BlocklyPage({ isSandbox }) {
 
   useEffect(() => {
     const setup = async () => {
+
+
+      //set up the toolbox toggling
+    var BTN = document.getElementById("ToggleButton");
+    var Arrow = document.getElementById("Arrow");
+
+    BTN.style.position = 'absolute';
+    //message.info("Hello");
+
+
+    BTN.style.height = 50 + 'px';
+    BTN.style.top = 140 + 'px';
+    BTN.style.left = 135 + 'px';
+    BTN.style.width = 50 + 'px';
+    BTN.style.border = 0 + 'px';
+
+    //Arrow.style.background = 'transparent';
+    BTN.style.background = 'transparent';
+
+
+
       // if we are in sandbox mode show all toolbox
       const sandboxActivity = JSON.parse(localStorage.getItem("sandbox-activity"))
       if (isSandbox) {

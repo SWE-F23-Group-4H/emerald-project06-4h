@@ -4,27 +4,6 @@ import arrow from './arrow.svg'
 
 export default function attachButton(){
 
-useEffect(() => {
-
-    var BTN = document.getElementById("ToggleButton");
-    var Arrow = document.getElementById("Arrow");
-
-    BTN.style.position = 'absolute';
-    //message.info("Hello");
-
-
-    BTN.style.height = 50 + 'px';
-    BTN.style.top = 140 + 'px';
-    BTN.style.left = 135 + 'px';
-    BTN.style.width = 50 + 'px';
-    BTN.style.border = 0 + 'px';
-
-    //Arrow.style.background = 'transparent';
-    BTN.style.background = 'transparent';
-
-})
-
-
 var toolBoxActive = true;
   var id = null;
   function toggleToolBox(){

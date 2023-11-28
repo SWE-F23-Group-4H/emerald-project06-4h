@@ -18,6 +18,7 @@ import {
 import { getAuthorizedWorkspace, createBlock, getAuthorizedWorkspaceToolbox, getBlocks } from '../../../../Utils/requests';
 import ArduinoLogo from '../Icons/ArduinoLogo';
 import PlotterLogo from '../Icons/PlotterLogo';
+import AddButton from './add-button.png';
 
 let plotId = 1;
 
@@ -453,7 +454,7 @@ export default function MentorCanvas({ activity, isSandbox, setActivity,  isMent
                         className='flex flex-row'
                         id='create-block-button'
                       >
-                        <button onClick={openBlockMenu} style={{'height': 50 + 'px', 'width': 50 + 'px'}}><img src="../Icons/add-button.png"/></button>
+                        <button onClick={openBlockMenu} style={{'height': 30 + 'px', 'width': 30 + 'px', 'background': 'transparent', 'border': 0 + 'px', 'padding': 0 + 'px', 'borderRight' : 10 + 'px'}}><img src={AddButton} alt='' style={{'height': 30 + 'px', 'width': 30 + 'px'}}/></button>
                       </Col>
                     ) : null}
                     {!isSandbox ? (
