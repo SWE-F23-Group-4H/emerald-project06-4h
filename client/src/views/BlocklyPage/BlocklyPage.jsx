@@ -16,26 +16,68 @@ export default function BlocklyPage({ isSandbox }) {
   const [activity, setActivity] = useState({})
   const navigate = useNavigate()
 
+
+
   useEffect(() => {
     const setup = async () => {
 
 
       //set up the toolbox toggling
-    var BTN = document.getElementById("ToggleButton");
-    var Arrow = document.getElementById("Arrow");
+      var TTB = document.getElementById('TTB');
 
-    BTN.style.position = 'absolute';
-    //message.info("Hello");
+      if(TTB)
+        TTB.style.marginLeft = 60 + 'px';
 
+      //adjust all of the contents inside of the toolbox
+      var a = document.getElementById(':1');
+      var b = document.getElementById(':2');
+      var c = document.getElementById(':3');
+      var d = document.getElementById(':4');
+      var e = document.getElementById(':5');
+      var f = document.getElementById(':6');
+      var g = document.getElementById(':7');
+      var h = document.getElementById(':8');
+      var i = document.getElementById(':9');
+      var j = document.getElementById(':a');
+      var k = document.getElementById(':b');
+      var l = document.getElementById(':c');
 
-    BTN.style.height = 50 + 'px';
-    BTN.style.top = 140 + 'px';
-    BTN.style.left = 135 + 'px';
-    BTN.style.width = 50 + 'px';
-    BTN.style.border = 0 + 'px';
-
-    //Arrow.style.background = 'transparent';
-    BTN.style.background = 'transparent';
+      if(a){
+        a.style.paddingRight = 70 + 'px';
+      }
+      if(b){
+        b.style.paddingRight = 70 + 'px';
+      }
+      if(c){
+        c.style.paddingRight = 70 + 'px';
+      }
+      if(d){
+        d.style.paddingRight = 70 + 'px';
+      }
+      if(e){
+        e.style.paddingRight = 70 + 'px';
+      }
+      if(f){
+        f.style.paddingRight = 70 + 'px';
+      }
+      if(g){
+        g.style.paddingRight = 70 + 'px';
+      }
+      if(h){
+        h.style.paddingRight = 70 + 'px';
+      }
+      if(i){
+        i.style.paddingRight = 70 + 'px';
+      }
+      if(j){
+        j.style.paddingRight = 70 + 'px';
+      }
+      if(k){
+        k.style.paddingRight = 70 + 'px';
+      }
+      if(l){
+        l.style.paddingRight = 70 + 'px';
+      }
 
 
 
@@ -99,7 +141,7 @@ export default function BlocklyPage({ isSandbox }) {
       <NavBar />
       <div className="flex flex-row">
         <BlocklyCanvasPanel id = "canvas" activity={activity} setActivity={setActivity} isSandbox={isSandbox} />
-        <ToggleToolbox></ToggleToolbox>
+        <ToggleToolbox id="TTB"></ToggleToolbox>
       </div>
     </div>
   )

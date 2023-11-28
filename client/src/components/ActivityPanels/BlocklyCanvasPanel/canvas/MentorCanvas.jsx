@@ -358,6 +358,18 @@ export default function MentorCanvas({ activity, isSandbox, setActivity,  isMent
     </Menu>
   );
 
+  useEffect(() => {
+    var ADDBTN = document.getElementById("ADDBTN");
+    
+    var toolboxMNT = document.getElementsByClassName("blocklyToolboxDiv")[0];
+
+    if(ADDBTN && toolboxMNT){
+      toolboxMNT.append(ADDBTN);
+    }
+  })
+
+  
+
 
 
   return (
@@ -454,7 +466,7 @@ export default function MentorCanvas({ activity, isSandbox, setActivity,  isMent
                         className='flex flex-row'
                         id='create-block-button'
                       >
-                        <button onClick={openBlockMenu} style={{'height': 30 + 'px', 'width': 30 + 'px', 'background': 'transparent', 'border': 0 + 'px', 'padding': 0 + 'px', 'borderRight' : 10 + 'px'}}><img src={AddButton} alt='' style={{'height': 30 + 'px', 'width': 30 + 'px'}}/></button>
+                     <button id="ADDBTN" onClick={openBlockMenu} style={{'height': 30 + 'px', 'width': 30 + 'px', 'background': 'transparent', 'border': 0 + 'px', 'padding': 0 + 'px', 'borderRight' : 10 + 'px'}}><img src={AddButton} alt='' style={{'height': 30 + 'px', 'width': 30 + 'px'}}/></button>
                       </Col>
                     ) : null}
                     {!isSandbox ? (
@@ -551,7 +563,9 @@ export default function MentorCanvas({ activity, isSandbox, setActivity,  isMent
                   </Row>
                 </Row>
               </Col>
+             
             </Row>
+      
             <div id='blockly-canvas' />
           </Spin>
           </div>
@@ -604,6 +618,7 @@ export default function MentorCanvas({ activity, isSandbox, setActivity,  isMent
           ))
         }
       </xml>
+      
 
       {compileError && (
         <Alert
