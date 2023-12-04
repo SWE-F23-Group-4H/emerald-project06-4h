@@ -113,11 +113,12 @@ export const getArduino = (workspaceRef, shouldAlert = true) => {
   {
     //console.log("what is grabbed: ");
     //console.log(previous_code);
-    console.log("same code");
+    //console.log("same code");
   }
   else
   {
     console.log("append here");
+    //code.replace(code[code.lastIndexOf(";")],";\nnew_code();")
   }
 
 
