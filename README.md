@@ -140,3 +140,44 @@ Before submitting a pull request, rebase the feature branch into the target bran
 
 - PRs to **master** should squash and merge
 - PRs to all other branches should create a merge commit
+
+## Custom Blocks
+
+> As of 12/09/23, **blockly_dev** and **code_injectionv2** have been merged into **develop**
+
+- **blockly_dev** - Directly create Blockly blocks using the [ArduBlockly Factory](https://ardublockly.ymtech.education/ardublockly/blockfactory/index.html)
+- **code_injectionv2** - Inject C code into existing blocks
+- **develop** - Minimaum viable product
+
+### Creating Custom Blocks in CaSSM
+
+> An unauthorized user cannot access or create Custom blocks
+> Users with the `Mentor` role assignment can create Custom blocks within workspaces and lessons
+> Users with the `Student` role assignment can only access Custom blocks within assigned workspaces and lessons
+
+1. To create a custom block, sign into a user account with the `Mentor` role and navigate to a lesson
+2. Click the 'plus' button to open the Custom block creation form
+<img width="1680" alt="Creating Custom Blocks" src="https://github.com/SWE-F23-Group-4H/emerald-project06-4h/assets/100671205/4a2ba137-c35d-449c-9f99-d2360c718c40">
+
+3. Using the [ArduBlockly Factory](https://ardublockly.ymtech.education/ardublockly/blockfactory/index.html), copy and paste the JavaScript code stubs and Blockly definitions into the form. Note that blocks names should not contain spaces.
+<img width="1680" alt="Creating Custom Blocks" src="https://github.com/SWE-F23-Group-4H/emerald-project06-4h/assets/100671205/349d30eb-31ac-4acc-9791-29f40f7c1c26">
+
+4. Once clicking `Create Block`, the form will reset and remain open if you wish to create additional Custom blocks. Blocks will automatically be added to the database with the given parameters.
+
+> Currently, you will have to exit the lesson and enter it again to access newly created Custom blocks. Make sure to enable the Custom category in the right sidepane so that Custom blocks are accessible within student workspaces
+
+## Outstanding Work
+
+### UI Bugs
+
+> When opening the Block creation form, certain react elements will not resize properly due to improperly modified react states
+> This can simply be rectified by clicking on the screen a few times
+
+### Sandbox Style Block Creation
+
+> Our original plan was to implement a sandbox-style Custom block creator such as what is seen in the ArduBlockly Generator linked above. Given more time, this is still something we would like to implement to avoid relying on third-party applications to generate blocks. Unfortunately, implementing this feature proved to be more difficult than anticipated and was abandoned in favor of the existing form.
+
+### Add User ID and Workspace ID to Block entries in Strapi
+
+> Curently, the Custom category is shared amongst all users and workspaces. We planned to add a workspace_id and user_id field to the Block schema in Strapi to allow us to render Custom blocks specific for each lesson or workspace but had no time to complete this feature.
+
