@@ -149,6 +149,8 @@ Before submitting a pull request, rebase the feature branch into the target bran
 - **code_injectionv2** - Inject C code into existing blocks
 - **develop** - Minimaum viable product
 
+> Note: If you have an existing version of CaSMM downloaded already, you will need to run `yarn` within the project directory to resolve dependency issues as the `react-modal` library is used. 
+
 ### Injecting Code
 
 > This is restricted to the sandbox only as of right now, the actual code should not run
